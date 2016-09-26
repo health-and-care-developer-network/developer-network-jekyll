@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Usage image_name container_name port
+# Usage deployLocal.sh image_name container_name port
 
 IMAGE=$1
 NAME=$2
