@@ -63,4 +63,3 @@ sed -n '/<!--end apicontent-->/,$p' _layouts/devnet.html >> _layouts/default.htm
 # Now, generate the output
 bundle install
 bundle exec jekyll build --destination /tmp/site
-chmod -R 777 /tmp/site/*
