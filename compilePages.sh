@@ -16,7 +16,7 @@ echo "Breadcrumb: $BREADCRUMB"
 # Generate HTML
 mkdir /tmp/site
 chmod 777 /tmp/site
-docker run --net=host -v /tmp/site:/output nhsd/jekyllpublish sh -c '/generate.sh $GITHUB_URL $DEVNET_URL $BREADCRUMB'
+docker run --net=host -v /tmp/site:/output nhsd/jekyllpublish sh -c "/generate.sh $GITHUB_URL $DEVNET_URL $BREADCRUMB"
 
 # Now, build an nginx container to serve up the pages
 mv /tmp/site nginx/site
