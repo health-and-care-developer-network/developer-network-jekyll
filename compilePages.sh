@@ -7,6 +7,12 @@ DEVNET_URL=$2
 OUTPUT_IMAGE_NAME=$3
 BREADCRUMB=$4
 
+echo "Running compile script"
+echo "Parameters:"
+echo "GIT URL: $GITHUB_URL"
+echo "DN URL: $DEVNET_URL"
+echo "Breadcrumb: $BREADCRUMB"
+
 # Generate HTML
 mkdir /tmp/site
 chmod 777 /tmp/site
