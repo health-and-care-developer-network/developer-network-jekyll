@@ -14,13 +14,12 @@ echo "DN URL: $DEVNET_URL"
 echo "Breadcrumb: $BREADCRUMB"
 
 # Generate HTML
-docker run --net=host -v /tmp/site:/tmp/site nhsd/jekyllpublish sh -c "/generate.sh $GITHUB_URL $DEVNET_URL $BREADCRUMB"
+rm -Rf ./nginx/site
+mkdir ./nginx/site
+chmod 777 nginx/site
+docker run --net=host -v ./nginx/site:/tmp/site nhsd/jekyllpublish sh -c "/generate.sh $GITHUB_URL $DEVNET_URL $BREADCRUMB"
 
 # Now, build an nginx container to serve up the pages
-rm -Rf nginx/site 
-mkdir nginx/site
-cp -R /tmp/site/* nginx/site/
 docker build --no-cache -t $OUTPUT_IMAGE_NAME nginx/.
-rm -Rf nginx/site
-rm -Rf tmp/site
+rm -Rf ./nginx/site
 
