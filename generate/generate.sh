@@ -62,4 +62,6 @@ sed -n '/<!--end apicontent-->/,$p' _layouts/devnet.html >> _layouts/default.htm
 
 # Now, generate the output
 bundle install
+whoami
+chmod -R 777 /home/generator/output
 bundle exec jekyll build --destination /home/generator/output

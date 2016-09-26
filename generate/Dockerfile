@@ -14,7 +14,7 @@ RUN chmod -R 777 /var/lib/gems
 # Create a new user for the rest
 RUN useradd generator -s /bin/bash
 RUN mkdir /home/generator
-RUN chown generator:generator /home/generator
+RUN chown -R generator:generator /home/generator
 RUN chmod -R 777 /usr/local/bin
 
 # Copy in scripts to alter template and generate pages
