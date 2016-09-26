@@ -13,5 +13,5 @@ else
 fi
 
 # Build image
-docker build --no-cache -t $IMAGE_NAME generate/.
+docker build -t $IMAGE_NAME generate/.
 
