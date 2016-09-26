@@ -5,6 +5,12 @@ GIT_URL=$1
 DN_URL=$2
 CRUMB=$3
 
+echo "Running generate script"
+echo "Parameters:"
+echo "GIT URL: $GIT_URL"
+echo "DN URL: $DN_URL"
+echo "Breadcrumb: $CRUMB"
+
 rm -Rf /tmp/source
 git clone $GIT_URL /tmp/source
 cd /tmp/source
