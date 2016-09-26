@@ -19,7 +19,7 @@ echo "Breadcrumb: $BREADCRUMB"
 
 # Now, build an nginx container to serve up the pages
 echo "WHOAMI?:"
-whoami
+id
 mkdir nginx/site
 cp -R /docker-data/generated/* nginx/site
 docker build --no-cache -t $OUTPUT_IMAGE_NAME nginx/.
