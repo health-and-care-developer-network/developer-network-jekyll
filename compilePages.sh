@@ -22,4 +22,5 @@ mkdir nginx/site
 cp -R /tmp/site/* nginx/site/
 docker build --no-cache -t $OUTPUT_IMAGE_NAME nginx/.
 rm -Rf nginx/site
+rm -Rf tmp/site
 
