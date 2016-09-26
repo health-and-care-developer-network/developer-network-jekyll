@@ -13,7 +13,7 @@ docker run --net=host -v /docker-data/generated:/home/generator/output nhsd/jeky
 
 # Now, build an nginx container to serve up the pages
 mkdir -p nginx/site/$CONTEXT_PATH
-cp -R /docker-data/generated/* nginx/site/%CONTEXT_PATH
+cp -R /docker-data/generated/* nginx/site/$CONTEXT_PATH
 docker build --no-cache -t $OUTPUT_IMAGE_NAME nginx/.
 rm -Rf /docker-data/generated/*
 rm -Rf ./nginx/site
