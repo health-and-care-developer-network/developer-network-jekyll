@@ -42,6 +42,9 @@ sed -i '/This site is optimized with the Yoast/,/\[endif\]/d' _layouts/devnet.ht
 sed -i '/jquery\.js?ver=1\.12\.4/,/scripts\/zilla-likes.js?ver/d' _layouts/devnet.html
 sed -i '/1\.7\.1\/jquery\.min\.js/,/js\/script-ck\.js/d' _layouts/devnet.html
 
+# Fix the APIs page URL which wget messed up
+sed -i '/"devnet.html"/c\<li class="apis"><a href="\/apis">API Hub</a></li>' _layouts/devnet.html
+
 # Alter the main page section wrappers
 sed -i '/<div id="api_list">/c\<div class="wrapper cf container"><div class="content_wrap cf"><div class="apicontent">' _layouts/devnet.html
 sed -i '/<!-- end api list -->/c\<!--end apicontent--></div></div></div>' _layouts/devnet.html
