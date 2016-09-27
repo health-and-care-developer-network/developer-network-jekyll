@@ -40,6 +40,12 @@ wget --convert-links --output-document=_layouts/devnet.html $DN_URL
 
 # And manipulate it to add in the right bits from the github template
 
+# Fix the breadcrumbs
+
+NEW_CRUMBS="<span xmlns:v=\"http:\/\/rdf\.data-vocabulary\.org\/#\"><span typeof=\"v:Breadcrumb\"><a href=\"\/\" rel=\"v:url\" property=\"v:title\">Home<\/a>  <span class=\"bc_arrow\" aria-hidden=\"true\" data-icon=\"&#x2a;\"></span></li>    <li><span xmlns:v=\"http:\/\/rdf\.data-vocabulary\.org\/#\"><span typeof=\"v:Breadcrumb\"><a href=\"\/apis\/\" rel=\"v:url\" property=\"v:title\">APIs<\/a>  <span class=\"bc_arrow\" aria-hidden=\"true\" data-icon=\"&#x2a;\"><\/span><\/li>     <li> <strong class=\"breadcrumb_last\">$CRUMB<\/strong><\/span><\/span><\/li><\/ul>	<\/div><!--end wrapper-->"
+
+sed -i '/typeof=\"v:Breadcrumb\"/c\'"$NEW_CRUMBS"'' _layouts/devnet.html
+
 # Remove bits we don't want
 sed -i '/<head>/c\<head> {% seo %} {% include head.html %} ' _layouts/devnet.html
 sed -i '/<meta charset="utf-8">/,/<meta name="viewport"/d' _layouts/devnet.html
