@@ -24,8 +24,11 @@ cp /templates/footer.html _includes/footer.html
 # Remove the logo from the sidebar
 sed -i '/NHS Digital Logo/c\<!--  -->' _includes/sidebar.html
 
-# Alter the CSS so it doesn't include a symbol next to the dev network links
+# Alter the CSS to fix some clashed with the main dev network styles
 sed -i '/a\[href\^="http:\/\/"\]:after/c\\.apicontent > a\[href\^="http:\/\/"\]:after, a\[href\^="https:\/\/"\]:after {' css/customstyles.css
+echo ".search_box #s { height: 33px; }" >> css/customstyles.css
+echo ".main_nav .wrapper ul li a { height: 54px; }" >> css/customstyles.css
+
 
 # Move the default page template to a different name
 mv _layouts/default.html _layouts/default-old.html
