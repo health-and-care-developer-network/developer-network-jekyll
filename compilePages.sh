@@ -27,7 +27,7 @@ cp -R /var/jenkins_home/generated/* nginx/site/$CONTEXT_PATH
 
 # Now, build an nginx container to serve up the pages
 docker $REGISTRY_HOST_PREFIX build --no-cache -t $OUTPUT_IMAGE_NAME nginx/.
-docker $REGISTRY_HOST_PREFIX tag nhsd-keycloak $REGISTRY_URL/$OUTPUT_IMAGE_NAME
+docker $REGISTRY_HOST_PREFIX tag $OUTPUT_IMAGE_NAME $REGISTRY_URL/$OUTPUT_IMAGE_NAME
 docker $REGISTRY_HOST_PREFIX push $REGISTRY_URL/$OUTPUT_IMAGE_NAME
 docker $REGISTRY_HOST_PREFIX rmi $OUTPUT_IMAGE_NAME
 
