@@ -1,17 +1,21 @@
 #!/bin/bash
 
+# Usage:
+# buildCompiler.sh buildserverhostname
+
+BUILD_HOST=$1
+
+if [ -z $BUILD_HOST ]
+then
+  BUILD_HOST_PREFIX=""
+else
+  BUILD_HOST_PREFIX="--tlsverify -H $BUILD_HOST:2376"
+fi
+
 
 # Check if image already exists
 IMAGE_NAME=nhsd/jekyllpublish
-IMAGE_ID=`docker $PREFIX inspect "$IMAGE_NAME" 2> /dev/null | grep Id | sed "s/\"//g" | sed "s/,//g" |  tr -s ' ' | cut -d ' ' -f3`
-if [ -z "$IMAGE_ID" ]
-then
-  echo "Image doesn't exist"
-else
-  echo "Image exists - removing it"
-  docker rm $IMAGE_NAME
-fi
 
 # Build image
-docker build -t $IMAGE_NAME generate/.
+docker $BUILD_HOST_PREFIX build -t $IMAGE_NAME generate/.
 
