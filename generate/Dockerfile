@@ -1,13 +1,11 @@
 FROM ubuntu:16.04
 
 # Add ruby repo
-RUN apt-get update
-RUN apt-get install -y software-properties-common build-essential zlib1g-dev nodejs wget
+RUN apt-get update && apt-get install -y software-properties-common build-essential zlib1g-dev nodejs wget
 RUN apt-add-repository ppa:brightbox/ruby-ng
 
 # Install dependencies
-RUN apt-get update
-RUN apt-get install -y nginx ruby2.2 ruby2.2-dev git
+RUN apt-get update && apt-get install -y nginx ruby2.2 ruby2.2-dev git
 RUN gem install jekyll bundler
 RUN chmod -R 777 /var/lib/gems
 
