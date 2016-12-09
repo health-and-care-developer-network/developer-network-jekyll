@@ -1,20 +1,25 @@
 #!/bin/bash
 
 # Usage:
-# buildCompiler.sh buildserverhostname
+# buildCompiler.sh registry_hostname
 
-BUILD_HOST=$1
-
-if [ -z $BUILD_HOST ]
-then
-  BUILD_HOST_PREFIX=""
-else
-  BUILD_HOST_PREFIX="--tlsverify -H $BUILD_HOST:2376"
-fi
-
-
+REGISTRY_HOST=$1
 IMAGE_NAME=nhsd/jekyllpublish
 
-# Build image
-docker $BUILD_HOST_PREFIX build -t $IMAGE_NAME generate/.
+if [ -z $REGISTRY_HOST ]
+then
+  REGISTRY_PREFIX=""
+else
+  REGISTRY_PREFIX="--tlsverify -H $BUILD_HOST:2376"
+fi
 
+# Build image
+docker $REGISTRY_PREFIX build -t $IMAGE_NAME generate/.
+
+# If we are using a private registry, push the image into it
+if [ ! -z $REGISTRY_HOST ]
+then
+	docker $REGISTRY_PREFIX tag $IMAGE_NAME $REGISTRY_URL/$IMAGE_NAME
+	docker $REGISTRY_PREFIX push $REGISTRY_URL/$IMAGE_NAME
+	docker $REGISTRY_PREFIX rmi $IMAGE_NAME
+fi
