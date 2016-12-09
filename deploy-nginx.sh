@@ -49,7 +49,6 @@ docker $TARGET_PREFIX stop $CONTAINER_NAME
 docker $TARGET_PREFIX rm $CONTAINER_NAME
 docker $TARGET_PREFIX run --name $CONTAINER_NAME \
 	--restart=on-failure:5 \
-	-u 1000 \
         -m $MEMORYFLAG \
 	-c $CPUFLAG \
 	-v $VOLUME_PATH:/usr/share/nginx/html \
