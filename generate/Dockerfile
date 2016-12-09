@@ -10,7 +10,6 @@ RUN gem install jekyll bundler
 RUN chmod -R 777 /var/lib/gems
 
 # Create a new user for the rest
-RUN useradd generator -s /bin/bash
 RUN groupadd -r generator -g 1000 && \
     useradd -u 1000 -s /bin/bash -r -g generator generator
 
