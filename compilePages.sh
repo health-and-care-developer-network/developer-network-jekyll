@@ -8,7 +8,7 @@ GITHUB_URL=$3
 DEVNET_URL=$4
 BREADCRUMB=$5
 DIR_NAME=$6
-VOLUME_PATH=${1:-/docker-data/jekyll-generated-pages}
+VOLUME_PATH=${VOLUME_PATH:-/docker-data/jekyll-generated-pages}
 
 IMAGE_NAME=nhsd/jekyllpublish
 
