@@ -1,3 +1,2 @@
-FROM nginx:1.11.4-alpine
-COPY site /usr/share/nginx/html/
-
+FROM nginx:1.10-alpine
+USER 1000

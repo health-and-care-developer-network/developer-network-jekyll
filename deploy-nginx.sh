@@ -9,7 +9,7 @@ TARGET_HOST=$3
 
 LISTEN_PORT=${LISTEN_PORT:-8081}
 CONTAINER_NAME=${CONTAINER_NAME:-nginx-jekyll}
-IMAGE_NAME=${IMAGE_NAME:-nginx:1.10-alpine}
+IMAGE_NAME=${IMAGE_NAME:-nginx-jekyll}
 
 if [ -z $TARGET_HOST ]
 then
@@ -27,9 +27,18 @@ else
   # Registry specified, so use it
   REGISTRY_PREFIX="--tlsverify -H $REGISTRY_HOST:2376"
   SOURCE_URL=$REGISTRY_HOST:5000/$IMAGE_NAME
+fi
 
-  echo "Ensure the image is in our registry, and if not add it"
-  ./populateImageIntoRegistry.sh $IMAGE_NAME $REGISTRY_HOST
+
+# Build the customised NGinx container
+docker $REGISTRY_PREFIX build $IMAGE_NAME
+
+# If we are using a private registry, push the image in
+if [! -z $REGISTRY_HOST ]
+then
+	docker $REGISTRY_PREFIX tag $IMAGE_NAME $SOURCE_URL
+	docker $REGISTRY_PREFIX push $SOURCE_URL
+	docker $REGISTRY_PREFIX rmi $IMAGE_NAME
 fi
 
 MEMORYFLAG=500m

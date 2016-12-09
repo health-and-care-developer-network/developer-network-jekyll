@@ -32,6 +32,7 @@ fi
 
 # Generate HTML
 docker $TARGET_PREFIX run \
+	--name jekyllpublish \
 	-v $VOLUME_PATH:/content \
 	$SOURCE_URL sh -c "/generate.sh $GITHUB_URL $DEVNET_URL $BREADCRUMB $DIR_NAME"
 
