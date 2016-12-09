@@ -31,7 +31,7 @@ fi
 
 
 # Build the customised NGinx container
-docker $REGISTRY_PREFIX build $IMAGE_NAME
+docker $REGISTRY_PREFIX build -t $IMAGE_NAME ./nginx
 
 # If we are using a private registry, push the image in
 if [! -z $REGISTRY_HOST ]
