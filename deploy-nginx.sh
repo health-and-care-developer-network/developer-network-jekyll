@@ -34,7 +34,7 @@ fi
 docker $REGISTRY_PREFIX build -t $IMAGE_NAME ./nginx
 
 # If we are using a private registry, push the image in
-if [! -z $REGISTRY_HOST ]
+if [ ! -z $REGISTRY_HOST ]
 then
 	docker $REGISTRY_PREFIX tag $IMAGE_NAME $SOURCE_URL
 	docker $REGISTRY_PREFIX push $SOURCE_URL
