@@ -12,7 +12,7 @@ if [ -z $REGISTRY_HOST ]
 then
   REGISTRY_PREFIX=""
 else
-  REGISTRY_PREFIX="--tlsverify -H $BUILD_HOST:2376"
+  REGISTRY_PREFIX="--tlsverify -H $REGISTRY_HOST:2376"
 fi
 
 # Build image
