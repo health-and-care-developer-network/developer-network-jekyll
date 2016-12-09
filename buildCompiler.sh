@@ -13,7 +13,6 @@ else
 fi
 
 
-# Check if image already exists
 IMAGE_NAME=nhsd/jekyllpublish
 
 # Build image

@@ -1,9 +1,13 @@
 #!/bin/bash
 
-# Usage: generate.sh git_url developer_network_api_page_url breadcrumb_name
+# Usage: generate.sh git_url developer_network_api_page_url breadcrumb_name directory_name
 GIT_URL=$1
 DN_URL=$2
 CRUMB=$3
+DIR_NAME=$4
+
+ROOT_PATH="/content"
+TEMP_PATH="/content/tmp"
 
 echo "Running generate script"
 echo "Parameters:"
@@ -11,10 +15,12 @@ echo "GIT URL: $GIT_URL"
 echo "DN URL: $DN_URL"
 echo "Breadcrumb: $CRUMB"
 
-rm -Rf /tmp/source
-git clone $GIT_URL /tmp/source
-cd /tmp/source
+rm -Rf $ROOT_PATH/$DIR_NAME
+mkdir -p $ROOT_PATH/$DIR_NAME
 
+rm -Rf $TEMP_PATH
+git clone $GIT_URL $TEMP_PATH
+cd $TEMP_PATH
 
 # Now we need to manipulate the templates to fit in with the developer network theme
 
@@ -76,4 +82,8 @@ sed -n '/<!--end apicontent-->/,$p' _layouts/devnet.html >> _layouts/default.htm
 
 # Now, generate the output
 bundle install
-bundle exec jekyll build --destination /home/generator/output
+bundle exec jekyll build --destination $ROOT_PATH/$DIR_NAME
+
+# And clean up the temp files
+rm -Rf $TEMP_PATH
+

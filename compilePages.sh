@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Usage compilePages.sh registry_host github_url devnet_url output_image_name breadcrumb_name context_path
+# Usage compilePages.sh registry_host github_url devnet_url breadcrumb_name directory_name
 
 REGISTRY_HOST=$1
 GITHUB_URL=$2
 DEVNET_URL=$3
-OUTPUT_IMAGE_NAME=$4
-BREADCRUMB=$5
-CONTEXT_PATH=$6
+BREADCRUMB=$4
+DIR_NAME=$5
+VOLUME_PATH=${1:-/docker-data/jekyll-generated-pages}
 
 REGISTRY_URL=$REGISTRY_HOST:5000
 
@@ -19,19 +19,8 @@ else
 fi
 
 # Generate HTML
-docker $REGISTRY_HOST_PREFIX run --net=host -v /docker-data/jenkins_home/generated:/home/generator/output nhsd/jekyllpublish sh -c "/generate.sh $GITHUB_URL $DEVNET_URL $BREADCRUMB"
+docker $REGISTRY_HOST_PREFIX run \
+	-v $VOLUME_PATH:/content \
+	nhsd/jekyllpublish sh -c "/generate.sh $GITHUB_URL $DEVNET_URL $BREADCRUMB $DIR_NAME"
 
-# Copy the generated content into a path we can use from the nginx dockerfile
-mkdir -p nginx/site/$CONTEXT_PATH
-cp -R /var/jenkins_home/generated/* nginx/site/$CONTEXT_PATH
-
-# Now, build an nginx container to serve up the pages
-docker $REGISTRY_HOST_PREFIX build --no-cache -t $OUTPUT_IMAGE_NAME nginx/.
-docker $REGISTRY_HOST_PREFIX tag $OUTPUT_IMAGE_NAME $REGISTRY_URL/$OUTPUT_IMAGE_NAME
-docker $REGISTRY_HOST_PREFIX push $REGISTRY_URL/$OUTPUT_IMAGE_NAME
-docker $REGISTRY_HOST_PREFIX rmi $OUTPUT_IMAGE_NAME
-
-# Clean up
-rm -Rf /var/jenkins_home/generated/*
-rm -Rf ./nginx/site
 

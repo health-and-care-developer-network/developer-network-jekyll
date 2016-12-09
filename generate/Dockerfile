@@ -11,6 +11,9 @@ RUN chmod -R 777 /var/lib/gems
 
 # Create a new user for the rest
 RUN useradd generator -s /bin/bash
+RUN groupadd -r generator -g 1000 && \
+    useradd -u 1000 -s /bin/bash -r -g generator generator
+
 RUN mkdir /home/generator
 RUN chown -R generator:generator /home/generator
 RUN chmod -R 777 /usr/local/bin
@@ -22,6 +25,8 @@ RUN chmod +x generate.sh
 # Copy in some other template files
 RUN mkdir /templates
 COPY footer.html /templates
+
+VOLUME ["/content"]
 
 # We will run the generator as a non-root user
 USER generator
