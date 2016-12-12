@@ -1,10 +1,11 @@
 #!/bin/bash
 
-# Usage: generate.sh git_url developer_network_api_page_url breadcrumb_name directory_name
+# Usage: generate.sh git_url developer_network_api_page_url breadcrumb_name directory_name branch
 GIT_URL=$1
 DN_URL=$2
 CRUMB=$3
 DIR_NAME=$4
+BRANCH=$5
 
 ROOT_PATH="/content"
 TEMP_PATH="/content/tmp"
@@ -14,6 +15,8 @@ echo "Parameters:"
 echo "GIT URL: $GIT_URL"
 echo "DN URL: $DN_URL"
 echo "Breadcrumb: $CRUMB"
+echo "Directory: $DIR_NAME"
+echo "Branch: $BRANCH"
 
 rm -Rf $ROOT_PATH/$DIR_NAME
 mkdir -p $ROOT_PATH/$DIR_NAME
@@ -21,6 +24,7 @@ mkdir -p $ROOT_PATH/$DIR_NAME
 rm -Rf $TEMP_PATH
 git clone $GIT_URL $TEMP_PATH
 cd $TEMP_PATH
+git checkout $BRANCH
 
 # Now we need to manipulate the templates to fit in with the developer network theme
 

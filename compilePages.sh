@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Usage compilePages.sh registry_host target_host github_url devnet_url breadcrumb_name directory_name
+# Usage compilePages.sh registry_host target_host github_url devnet_url breadcrumb_name directory_name branch
 
 REGISTRY_HOST=$1
 TARGET_HOST=$2
@@ -8,6 +8,7 @@ GITHUB_URL=$3
 DEVNET_URL=$4
 BREADCRUMB=$5
 DIR_NAME=$6
+BRANCH=${7:-master}
 VOLUME_PATH=${VOLUME_PATH:-/docker-data/jekyll-generated-pages}
 
 IMAGE_NAME=nhsd/jekyllpublish
@@ -35,5 +36,5 @@ docker $TARGET_PREFIX rm jekyllpublish
 docker $TARGET_PREFIX run \
 	--name jekyllpublish \
 	-v $VOLUME_PATH:/content \
-	$SOURCE_URL sh -c "/generate.sh $GITHUB_URL $DEVNET_URL $BREADCRUMB $DIR_NAME"
+	$SOURCE_URL sh -c "/generate.sh $GITHUB_URL $DEVNET_URL $BREADCRUMB $DIR_NAME $BRANCH"
 docker $TARGET_PREFIX rm jekyllpublish
