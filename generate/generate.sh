@@ -86,7 +86,13 @@ sed -n '/<!--end apicontent-->/,$p' _layouts/devnet.html >> _layouts/default.htm
 
 # Now, generate the output
 bundle install
-bundle exec jekyll build --destination $ROOT_PATH/$DIR_NAME
+
+mkdir $TEMP_PATH/generated
+bundle exec jekyll build --destination $TEMP_PATH/generated
+
+# Delete the old content and move the new content in its place
+rm -Rf $ROOT_PATH/$DIR_NAME
+mv $TEMP_PATH/generated $ROOT_PATH/$DIR_NAME
 
 # And clean up the temp files
 rm -Rf $TEMP_PATH
