@@ -30,6 +30,7 @@ then
 else
   TARGET_PREFIX="--tlsverify -H $TARGET_HOST:2376"
   if [ ! -z $REGISTRY_HOST ]
+  then
     # Explicitly pull the latest image from the repository so we know we are using the latest
     docker $TARGET_PREFIX pull $SOURCE_URL
   fi
