@@ -30,7 +30,7 @@ cp /templates/footer.html _includes/footer.html
 # Remove the logo from the sidebar
 sed -i '/NHS Digital Logo/c\<!--  -->' _includes/sidebar.html
 
-# Alter the CSS to fix some clashed with the main dev network styles
+# Alter the CSS to fix some clashes with the main dev network styles
 sed -i '/a\[href\^="http:\/\/"\]:after/c\\.apicontent > a\[href\^="http:\/\/"\]:after, a\[href\^="https:\/\/"\]:after {' css/customstyles.css
 echo ".search_box #s { height: 33px; }" >> css/customstyles.css
 echo ".main_nav .wrapper ul li a { height: 54px; }" >> css/customstyles.css
