@@ -35,7 +35,7 @@ cp /templates/footer.html _includes/footer.html
 sed -i '/NHS Digital Logo/c\<!--  -->' _includes/sidebar.html
 
 # Alter the CSS to fix some clashes with the main dev network styles
-sed -i '/a\[href\^="https:\/\/"\]:after/c\\.apicontent > a\[href\^="https:\/\/"\]:after, a\[href\^="https:\/\/"\]:after {' css/customstyles.css
+sed -i '/a\[href\^="http:\/\/"\]:after/c\\.apicontent > a\[href\^="https:\/\/"\]:after, \.apicontent > a\[href\^="https:\/\/"\]:after {' css/customstyles.css
 echo ".search_box #s { height: 33px; }" >> css/customstyles.css
 echo ".main_nav .wrapper ul li a { height: 54px; }" >> css/customstyles.css
 echo ".page_title hgroup { height: 160px; }" >> css/customstyles.css
