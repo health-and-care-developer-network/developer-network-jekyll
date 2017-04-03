@@ -35,7 +35,7 @@ cp /templates/footer.html _includes/footer.html
 sed -i '/NHS Digital Logo/c\<!--  -->' _includes/sidebar.html
 
 # Alter the CSS to fix some clashes with the main dev network styles
-sed -i '/a\[href\^="http:\/\/"\]:after/c\\.apicontent > a\[href\^="http:\/\/"\]:after, a\[href\^="https:\/\/"\]:after {' css/customstyles.css
+sed -i '/a\[href\^="https:\/\/"\]:after/c\\.apicontent > a\[href\^="https:\/\/"\]:after, a\[href\^="https:\/\/"\]:after {' css/customstyles.css
 echo ".search_box #s { height: 33px; }" >> css/customstyles.css
 echo ".main_nav .wrapper ul li a { height: 54px; }" >> css/customstyles.css
 echo ".page_title hgroup { height: 160px; }" >> css/customstyles.css
@@ -52,7 +52,7 @@ wget --convert-links --output-document=_layouts/devnet.html $DN_URL
 
 # Fix the breadcrumbs
 
-NEW_CRUMBS="<span xmlns:v=\"http:\/\/rdf\.data-vocabulary\.org\/#\"><span typeof=\"v:Breadcrumb\"><a href=\"\/\" rel=\"v:url\" property=\"v:title\">Home<\/a>  <span class=\"bc_arrow\" aria-hidden=\"true\" data-icon=\"&#x2a;\"></span></li>    <li><span xmlns:v=\"http:\/\/rdf\.data-vocabulary\.org\/#\"><span typeof=\"v:Breadcrumb\"><a href=\"\/apis\/\" rel=\"v:url\" property=\"v:title\">APIs<\/a>  <span class=\"bc_arrow\" aria-hidden=\"true\" data-icon=\"&#x2a;\"><\/span><\/li>     <li> <strong class=\"breadcrumb_last\">$CRUMB<\/strong><\/span><\/span><\/li><\/ul>	<\/div><!--end wrapper-->"
+NEW_CRUMBS="<span xmlns:v=\"https:\/\/rdf\.data-vocabulary\.org\/#\"><span typeof=\"v:Breadcrumb\"><a href=\"\/\" rel=\"v:url\" property=\"v:title\">Home<\/a>  <span class=\"bc_arrow\" aria-hidden=\"true\" data-icon=\"&#x2a;\"></span></li>    <li><span xmlns:v=\"https:\/\/rdf\.data-vocabulary\.org\/#\"><span typeof=\"v:Breadcrumb\"><a href=\"\/apis\/\" rel=\"v:url\" property=\"v:title\">APIs<\/a>  <span class=\"bc_arrow\" aria-hidden=\"true\" data-icon=\"&#x2a;\"><\/span><\/li>     <li> <strong class=\"breadcrumb_last\">$CRUMB<\/strong><\/span><\/span><\/li><\/ul>	<\/div><!--end wrapper-->"
 
 sed -i '/typeof=\"v:Breadcrumb\"/c\'"$NEW_CRUMBS"'' _layouts/devnet.html
 
