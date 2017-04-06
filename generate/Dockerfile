@@ -27,6 +27,9 @@ COPY footer.html /templates
 
 VOLUME ["/content"]
 
+# Added so we can use this prior to DNS switch-over
+RUN echo "13.69.155.33 developer.nhs.uk" >> /etc/hosts
+
 # We will run the generator as a non-root user
 USER generator
 
