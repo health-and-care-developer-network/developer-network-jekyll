@@ -1,3 +1,17 @@
 <style>
 	body, p { font-size: 15px; color: black; }
+	h1, h2, h3, h4, h5, p { margin-bottom: 10px; }
+	dd { margin-left: 20px; }
+	dt { font-weight: bold; }
+	ul {
+	    margin-top: 0px;
+	    display: block;
+	    list-style-type: disc;
+	    -webkit-margin-before: 1em;
+	    -webkit-margin-after: 1em;
+	    -webkit-margin-start: 0px;
+	    -webkit-margin-end: 0px;
+	    -webkit-padding-start: 40px;
+	}
+	table { border: 1px solid #dedede; }
 </style>
