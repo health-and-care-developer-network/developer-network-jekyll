@@ -19,6 +19,7 @@ RUN chmod -R 777 /usr/local/bin
 
 # Copy in scripts to alter template and generate pages
 COPY generate.sh /generate.sh
+COPY inline-styles.css /inline-styles.css
 RUN chmod +x generate.sh
 
 # Copy in some other template files

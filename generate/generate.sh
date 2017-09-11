@@ -42,6 +42,9 @@ echo ".page_title hgroup { height: 160px; }" >> css/customstyles.css
 echo ".page_title h1 { margin-top: 0px; }" >> css/customstyles.css
 echo ".page_title h2 { margin-top: 0px; padding-top: 0px; }" >> css/customstyles.css
 
+# Blat the customscripts.js file - it causes more issues than it solves
+echo "" >> js/customscripts.js
+
 # Move the default page template to a different name
 mv _layouts/default.html _layouts/default-old.html
 
@@ -78,6 +81,7 @@ sed -n '1,/fancybox\/fancybox.css/p' _layouts/devnet.html > _layouts/default.htm
 echo '<!-- FROM GITHUB TEMPLATE -->' >> _layouts/default.html
 sed -n '/<script>/,/<\/head>/{x;p;d;}' _layouts/default-old.html >> _layouts/default.html
 echo '<!-- END FROM GITHUB TEMPLATE -->' >> _layouts/default.html
+cat /inline-styles.css >> _layouts/default.html # Inject some inline styles to tidy things up and resolve style clashes between Dev Net and Jekyll
 sed -n '/<\/head>/,/<div class="apicontent">/p' _layouts/devnet.html >> _layouts/default.html
 echo '<!-- FROM GITHUB TEMPLATE -->' >> _layouts/default.html
 sed -n '/<!-- Page Content -->/,/<\/body>/{x;p;d;}' _layouts/default-old.html >> _layouts/default.html
