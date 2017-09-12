@@ -59,7 +59,7 @@ sed -i '/<head>/c\<head> {% seo %} {% include head.html %} ' _layouts/devnet.htm
 sed -i '/<meta charset="utf-8">/,/<meta name="viewport"/d' _layouts/devnet.html
 sed -i '/This site is optimized with the Yoast/,/\[endif\]/d' _layouts/devnet.html
 sed -i '/jquery\.js?ver=1\.12\.4/,/scripts\/zilla-likes.js?ver/d' _layouts/devnet.html
-sed -i '/1\.7\.1\/jquery\.min\.js/,/js\/script-ck\.js/d' _layouts/devnet.html
+sed -i '/HDN\/js\/landing\/promise\.min\.js/,/HDN\/js\/landing\/site\.js/d' _layouts/devnet.html
 
 # Fix the APIs page URL which wget messed up
 sed -i '/"devnet.html"/c\<li class="apis"><a href="\/apis">API Hub</a></li>' _layouts/devnet.html
