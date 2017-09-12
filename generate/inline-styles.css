@@ -7,11 +7,32 @@
 	    margin-top: 0px;
 	    display: block;
 	    list-style-type: disc;
-	    -webkit-margin-before: 1em;
 	    -webkit-margin-after: 1em;
 	    -webkit-margin-start: 0px;
 	    -webkit-margin-end: 0px;
 	    -webkit-padding-start: 40px;
 	}
+	pre {
+	    display: block;
+	    padding: 9.5px;
+	    margin: 0 0 10px;
+	    font-size: 13px;
+	    line-height: 1.428571429;
+	    word-break: break-all;
+	    word-wrap: break-word;
+	    color: #77777a;
+	    background-color: #f5f5f5;
+	    border: 1px solid #cccccc;
+	    border-radius: 4px;
+	    margin-top: 20px;
+	    margin-bottom: 20px;
+	}
 	table { border: 1px solid #dedede; }
+
+	.search_box #s { height: 33px; }
+	.main_nav .wrapper ul li a { height: 54px; }
+	.page_title hgroup { height: 160px; }
+	.page_title h1 { margin-top: 0px; }
+	.page_title h2 { margin-top: 0px; padding-top: 0px; }
+
 </style>
