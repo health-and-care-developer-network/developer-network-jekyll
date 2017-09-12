@@ -29,6 +29,14 @@
 	}
 	table { border: 1px solid #dedede; }
 
+	.nav a:hover, .nav li.active > a {
+	    background-color: #8D8D8D;
+	    color: #f5f5f5;
+	}
+	.nav li a:hover {
+	    background-color: #8D8D8D;
+	}
+
 	.search_box #s { height: 33px; }
 	.main_nav .wrapper ul li a { height: 54px; }
 	.page_title hgroup { height: 160px; }
