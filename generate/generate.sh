@@ -44,7 +44,7 @@ echo "" > js/customscripts.js
 mv _layouts/default.html _layouts/default-old.html
 
 # Now, get the API page from the dev network site
-wget --convert-links --output-document=_layouts/devnet.html $DN_URL
+wget --no-check-certificate --convert-links --output-document=_layouts/devnet.html $DN_URL
 
 # And manipulate it to add in the right bits from the github template
 
