@@ -9,6 +9,7 @@ DEVNET_URL=$4
 BREADCRUMB=$5
 DIR_NAME=$6
 BRANCH=${7:-master}
+BANNER_HTML_FILE=$8
 VOLUME_PATH=${VOLUME_PATH:-/docker-data/jekyll-generated-pages}
 
 IMAGE_NAME=nhsd/jekyllpublish
@@ -42,5 +43,5 @@ docker $TARGET_PREFIX run \
 	--add-host developer.nhs.uk:13.69.155.33 \
 	--name jekyllpublish \
 	-v $VOLUME_PATH:/content \
-	$SOURCE_URL sh -c "/generate.sh $GITHUB_URL $DEVNET_URL $BREADCRUMB $DIR_NAME $BRANCH"
+	$SOURCE_URL sh -c "/generate.sh $GITHUB_URL $DEVNET_URL $BREADCRUMB $DIR_NAME $BRANCH $BANNER_HTML_FILE"
 docker $TARGET_PREFIX rm jekyllpublish

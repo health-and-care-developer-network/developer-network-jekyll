@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Usage: generate.sh git_url developer_network_api_page_url breadcrumb_name directory_name branch
+# Usage: generate.sh git_url developer_network_api_page_url breadcrumb_name directory_name branch banner_html_file
 GIT_URL=$1
 DN_URL=$2
 CRUMB=$3
