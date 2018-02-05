@@ -1,11 +1,12 @@
 #!/bin/bash
 
-# Usage: generate.sh git_url developer_network_api_page_url breadcrumb_name directory_name branch
+# Usage: generate.sh git_url developer_network_api_page_url breadcrumb_name directory_name branch banner_html_file
 GIT_URL=$1
 DN_URL=$2
 CRUMB=$3
 DIR_NAME=$4
 BRANCH=$5
+BANNER_HTML_FILE=$6
 
 ROOT_PATH="/content"
 TEMP_PATH="/content/tmp"
@@ -17,6 +18,7 @@ echo "DN URL: $DN_URL"
 echo "Breadcrumb: $CRUMB"
 echo "Directory: $DIR_NAME"
 echo "Branch: $BRANCH"
+echo "Banner HTML FILE: $BANNER_HTML_FILE"
 
 rm -Rf $ROOT_PATH/$DIR_NAME
 mkdir -p $ROOT_PATH/$DIR_NAME
@@ -77,7 +79,16 @@ echo '<!-- FROM GITHUB TEMPLATE -->' >> _layouts/default.html
 sed -n '/<script>/,/<\/head>/{x;p;d;}' _layouts/default-old.html >> _layouts/default.html
 echo '<!-- END FROM GITHUB TEMPLATE -->' >> _layouts/default.html
 cat /inline-styles.css >> _layouts/default.html # Inject some inline styles to tidy things up and resolve style clashes between Dev Net and Jekyll
+
 sed -n '/<\/head>/,/<div class="apicontent">/p' _layouts/devnet.html >> _layouts/default.html
+
+# If we need to add banner styling
+if [ -n "$BANNER_HTML_FILE" ]
+then
+	echo '<!-- include HTML from parameterised file in body -->' >> _layouts/default.html
+	cat $BANNER_HTML_FILE >> _layouts/default.html
+fi
+
 echo '<!-- FROM GITHUB TEMPLATE -->' >> _layouts/default.html
 sed -n '/<!-- Page Content -->/,/<\/body>/{x;p;d;}' _layouts/default-old.html >> _layouts/default.html
 echo '<!-- END FROM GITHUB TEMPLATE -->' >> _layouts/default.html
