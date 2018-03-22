@@ -12,6 +12,13 @@
 	    -webkit-margin-end: 0px;
 	    -webkit-padding-start: 40px;
 	}
+	body ul, body ol {
+	    padding-left: 40px;
+	}
+
+	body ol {
+	    list-style: decimal;
+	}
 	pre {
 	    display: block;
 	    padding: 9.5px;
