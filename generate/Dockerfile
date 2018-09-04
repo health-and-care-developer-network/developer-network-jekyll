@@ -13,17 +13,18 @@ RUN apt-get update && apt-get install -y software-properties-common build-essent
 RUN apt-add-repository ppa:brightbox/ruby-ng
 
 # Install dependencies
-RUN apt-get update && apt-get install -y nginx ruby2.2 ruby2.2-dev git
-RUN gem install jekyll bundler
-RUN chmod -R 777 /var/lib/gems
+RUN apt-get update && apt-get install -y nginx ruby2.3 ruby2.3-dev git
 
 # Create a new user for the rest
 RUN groupadd -r generator -g 1000 && \
     useradd -u 1000 -s /bin/bash -r -g generator generator
 
+RUN gem install jekyll bundler
+
 RUN mkdir /home/generator
 RUN chown -R generator:generator /home/generator
 RUN chmod -R 777 /usr/local/bin
+RUN chmod -R 777 /var/lib/gems
 
 # Copy in scripts to alter template and generate pages
 COPY generate.sh /generate.sh
