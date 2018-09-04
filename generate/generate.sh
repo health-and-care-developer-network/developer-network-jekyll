@@ -20,6 +20,11 @@ echo "Directory: $DIR_NAME"
 echo "Branch: $BRANCH"
 echo "Banner HTML FILE: $BANNER_HTML_FILE"
 
+# Initialise ruby environment
+export PATH="/home/generator/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+# Prepare directories
 rm -Rf $ROOT_PATH/$DIR_NAME
 mkdir -p $ROOT_PATH/$DIR_NAME
 
