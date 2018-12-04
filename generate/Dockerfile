@@ -44,7 +44,7 @@ RUN git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 RUN git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 
 # Install Ruby into our environment
-RUN export PATH="/home/generator/.rbenv/bin:$PATH" && rbenv install 2.3.7 && rbenv global 2.3.7
+RUN export PATH="/home/generator/.rbenv/bin:$PATH" && rbenv install 2.4.3 && rbenv global 2.4.3
 
 # Install bundler and jekyll
 RUN export PATH="/home/generator/.rbenv/bin:$PATH" \
