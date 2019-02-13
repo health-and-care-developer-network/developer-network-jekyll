@@ -64,12 +64,13 @@ sed -i '/typeof=\"v:Breadcrumb\"/c\'"$NEW_CRUMBS"'' _layouts/devnet.html
 # Remove bits we don't want
 sed -i '/<head>/c\<head> {% seo %} {% include head.html %} ' _layouts/devnet.html
 sed -i '/<meta charset="utf-8">/,/<meta name="viewport"/d' _layouts/devnet.html
-sed -i '/This site is optimized with the Yoast/,/\[endif\]/d' _layouts/devnet.html
+#sed -i '/This site is optimized with the Yoast/,/\[endif\]/d' _layouts/devnet.html
+sed -i '/s.w.org/,/\[endif\]/d' _layouts/devnet.html
 sed -i '/jquery\.js?ver=1\.12\.4/,/scripts\/zilla-likes.js?ver/d' _layouts/devnet.html
 sed -i '/HDN\/js\/landing\/promise\.min\.js/,/HDN\/js\/landing\/site\.js/d' _layouts/devnet.html
 
 # Fix the APIs page URL which wget messed up
-sed -i '/"devnet.html"/c\<li class="apis"><a href="\/apis">API Hub</a></li>' _layouts/devnet.html
+sed -i 'header__menu-item\"><a href=\"devnet.html/c\            <li class=\"header__menu-item\"><a href=\"/apis\">API Hub<\/a><\/li>' _layouts/devnet.html
 
 # Alter the main page section wrappers
 sed -i '/<div id="api_list">/c\<div class="wrapper cf container"><div class="content_wrap cf"><div class="apicontent">' _layouts/devnet.html
