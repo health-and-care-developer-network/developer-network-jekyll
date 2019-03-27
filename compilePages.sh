@@ -40,7 +40,7 @@ fi
 # Generate HTML
 docker $TARGET_PREFIX rm jekyllpublish
 docker $TARGET_PREFIX run \
-	--add-host developer.nhs.uk:13.69.155.33 \
+	--add-host developer.nhs.uk:51.140.62.90 \
 	--name jekyllpublish \
 	-v $VOLUME_PATH:/content \
 	$SOURCE_URL sh -c "/generate.sh $GITHUB_URL $DEVNET_URL $BREADCRUMB $DIR_NAME $BRANCH $BANNER_HTML_FILE"
