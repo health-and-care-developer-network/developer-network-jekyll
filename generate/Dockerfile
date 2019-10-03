@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 # Set the locale
 RUN apt-get update && apt-get install -y locales
@@ -23,10 +23,10 @@ RUN groupadd -r generator -g 1000 && \
 RUN mkdir /home/generator
 RUN chown -R generator:generator /home/generator
 RUN chmod -R 777 /usr/local/bin
-#RUN chmod -R 777 /var/lib/gems
 
 # Copy in scripts to alter template and generate pages
 COPY generate.sh /generate.sh
+COPY developer-nhs-uk-snapshot.html /developer-nhs-uk-snapshot.html
 COPY inline-styles.css /inline-styles.css
 RUN chmod +x generate.sh
 
@@ -44,11 +44,11 @@ RUN git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 RUN git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 
 # Install Ruby into our environment
-RUN export PATH="/home/generator/.rbenv/bin:$PATH" && rbenv install 2.4.3 && rbenv global 2.4.3
+RUN export PATH="/home/generator/.rbenv/bin:$PATH" && rbenv install 2.4.9 && rbenv global 2.4.9
 
 # Install bundler and jekyll
 RUN export PATH="/home/generator/.rbenv/bin:$PATH" \
     && eval "$(rbenv init -)" \
     && ruby --version \
-    && gem install jekyll bundler
+    && gem install jekyll:3.8.6 bundler:2.0.2
 

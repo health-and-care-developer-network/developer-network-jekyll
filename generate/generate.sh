@@ -51,7 +51,7 @@ echo "" > js/customscripts.js
 mv _layouts/default.html _layouts/default-old.html
 
 # Now, get the API page from the dev network site
-wget --no-check-certificate --convert-links --output-document=_layouts/devnet.html $DN_URL
+cat /developer-nhs-uk-snapshot.html > _layouts/devnet.html
 
 # And manipulate it to add in the right bits from the github template
 
@@ -67,7 +67,7 @@ sed -i '/<meta charset="utf-8">/,/<meta name="viewport"/d' _layouts/devnet.html
 #sed -i '/This site is optimized with the Yoast/,/\[endif\]/d' _layouts/devnet.html
 sed -i '/s.w.org/,/\[endif\]/d' _layouts/devnet.html
 sed -i '/jquery\.js?ver=1\.12\.4/,/scripts\/zilla-likes.js?ver/d' _layouts/devnet.html
-sed -i '/HDN\/js\/landing\/promise\.min\.js/,/HDN\/js\/landing\/site\.js/d' _layouts/devnet.html
+sed -i '/HDN\/js\/landing\/promise\.min\.js/,/HDN\/js\/script-ck\.js/d' _layouts/devnet.html
 
 # Fix the APIs page URL which wget messed up
 sed -i 'header__menu-item\"><a href=\"devnet.html/c\            <li class=\"header__menu-item\"><a href=\"/apis\">API Hub<\/a><\/li>' _layouts/devnet.html
