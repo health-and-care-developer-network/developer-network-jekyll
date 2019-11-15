@@ -33,6 +33,9 @@ git clone $GIT_URL $TEMP_PATH
 cd $TEMP_PATH
 git checkout $BRANCH
 
+# Override Ruby Version of explicitly given in .ruby-version
+[ -e /content/tmp/.ruby-version ] && echo "Overriding .ruby-version:$(head -1 /content/tmp/.ruby-version)" && rm /content/tmp/.ruby-version
+
 # Now we need to manipulate the templates to fit in with the developer network theme
 
 # For the footer, we can just copy in a new version
